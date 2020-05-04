@@ -1,0 +1,21 @@
+﻿<Window x:Class="EventiObnova.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventiObnova"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+	<StackPanel>
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+			<TextBox Text="{Binding Ime, UpdateSourceTrigger=Explicit}" Width="200" LostFocus="IzgubioFokus"/>
+			<TextBox Text="{Binding Prezime, UpdateSourceTrigger=Explicit}" Width="200"/>
+		</StackPanel>
+		<Button Content="Unos" HorizontalAlignment="Center" Click="Unos"/>
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+			<Label Content="{Binding Ime}" Width="200"/>
+			<Label Content="{Binding Prezime}" Width="200"/>
+		</StackPanel>
+		<Label Content="{Binding ImeIPrezime}" HorizontalAlignment="Center"/>
+	</StackPanel>
+</Window>

@@ -17,5 +17,6 @@
 			<Label Content="{Binding Prezime}" Width="200"/>
 		</StackPanel>
 		<Label Content="{Binding ImeIPrezime}" HorizontalAlignment="Center"/>
+		<ComboBox Name="cb"/>
 	</StackPanel>
 </Window>

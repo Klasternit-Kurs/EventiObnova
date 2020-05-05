@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,17 +22,22 @@ namespace EventiObnova
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		ObservableCollection<Osoba> listaOsoba = new ObservableCollection<Osoba>();
 		public MainWindow()
 		{
 			InitializeComponent();
 			DataContext = new Osoba();
 			BindingGroup = new BindingGroup();
 
-			(DataContext as Osoba).PropertyChanged += FooBar;
+			cb.ItemsSource = listaOsoba;
+			cb.DisplayMemberPath = "ImeIPrezime";
+
 
 			Osoba o = new Osoba();
 			if (o is INotifyPropertyChanged interfejs)
-				MessageBox.Show("Jeste");
+			{
+				interfejs.PropertyChanged += FooBar;
+			}
 		}
 
 		private void FooBar(object posiljaoc, PropertyChangedEventArgs argumenti)
@@ -44,6 +50,8 @@ namespace EventiObnova
 			//BindingOperations.GetBindingExpression(txtIme, TextBox.TextProperty).UpdateSource();
 			//BindingOperations.GetBindingExpression(txtPrezime, TextBox.TextProperty).UpdateSource();
 			BindingGroup.CommitEdit();
+			if (DataContext is Osoba o)
+				listaOsoba.Add(o);
 		}
 
 		private void IzgubioFokus(object sender, RoutedEventArgs e)
@@ -61,8 +69,9 @@ namespace EventiObnova
 			set
 			{
 				_ime = value;
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Ime"));
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ImeIPrezime"));
+
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ime"));
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImeIPrezime"));
 			}
 		}
 		private string _prezime;
@@ -72,8 +81,8 @@ namespace EventiObnova
 			set
 			{
 				_prezime = value;
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Prezime"));
-				PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ImeIPrezime"));
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Prezime"));
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImeIPrezime"));
 			}
 		}
 

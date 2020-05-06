@@ -50,13 +50,27 @@ namespace EventiObnova
 			//BindingOperations.GetBindingExpression(txtIme, TextBox.TextProperty).UpdateSource();
 			//BindingOperations.GetBindingExpression(txtPrezime, TextBox.TextProperty).UpdateSource();
 			BindingGroup.CommitEdit();
-			if (DataContext is Osoba o)
-				listaOsoba.Add(o);
+			//if (DataContext is Osoba o)
+			if (!listaOsoba.Contains(DataContext)) 
+				listaOsoba.Add((Osoba)DataContext);
+			DataContext = new Osoba();
 		}
 
 		private void IzgubioFokus(object sender, RoutedEventArgs e)
 		{
 			BindingGroup.CommitEdit();
+		}
+
+		private void Izbor(object sender, SelectionChangedEventArgs e)
+		{
+			if (cb.SelectedItem != null)
+				DataContext = cb.SelectedItem;
+		}
+
+		private void Izbrisi(object sender, RoutedEventArgs e)
+		{
+			listaOsoba.Remove((Osoba)DataContext);
+			DataContext = new Osoba();
 		}
 	}
 

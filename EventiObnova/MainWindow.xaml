@@ -12,11 +12,12 @@
 			<TextBox Text="{Binding Prezime, UpdateSourceTrigger=Explicit}" Width="200"/>
 		</StackPanel>
 		<Button Content="Unos" HorizontalAlignment="Center" Click="Unos"/>
+		<Button Content="Obrisi" HorizontalAlignment="Center" Click="Izbrisi"/>
 		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 			<Label Content="{Binding Ime}" Width="200"/>
 			<Label Content="{Binding Prezime}" Width="200"/>
 		</StackPanel>
 		<Label Content="{Binding ImeIPrezime}" HorizontalAlignment="Center"/>
-		<ComboBox Name="cb"/>
+		<ComboBox Name="cb" SelectionChanged="Izbor"/>
 	</StackPanel>
 </Window>
